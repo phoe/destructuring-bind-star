@@ -44,3 +44,8 @@
                   (error 'error))
     (destructuring-error () (fail))
     ((and error (not destructuring-error)) () (pass))))
+
+(define-test test-6
+  (handler-case (destructuring-bind* (a . b) '()
+                  (declare (ignore a b)))
+    (error () (fail))))

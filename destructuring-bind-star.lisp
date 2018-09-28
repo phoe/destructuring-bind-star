@@ -36,15 +36,18 @@ in DESTRUCTURING-BIND*.")
              (prog2 (setf ,gensym t) ,(cadr elt) (setf ,gensym nil))
              ,@(cddr elt))))
     (loop with modifyp = nil
-          for elt in lambda-list
+          for thing on lambda-list
+          for elt = (car thing)
           if (or (atom elt) (= 1 (length elt)))
-            collect elt
-          else collect (wrap elt)
+            collect elt into result
+          else collect (wrap elt) into result
           if (and (member elt lambda-list-keywords)
                   (member elt '(&key &optional)))
             do (setf modifyp t)
           else if (member elt lambda-list-keywords)
-                 do (setf modifyp nil))))
+                 do (setf modifyp nil)
+          unless (listp (cdr thing))
+            do (return (nconc result (cdr thing))))))
 
 (defun extract-declarations (body)
   (loop for form = (car body)

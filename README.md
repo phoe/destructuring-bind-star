@@ -18,6 +18,16 @@ destructuring.
     * **Reader `DESTRUCTURING-ERROR-EXPRESSION`**
     * **Reader `DESTRUCTURING-ERROR-REASON`**
 
+## Usage
+
+Either use the `DESTRUCTURING-BIND-STAR` package and call the
+`DESTRUCTURING-BIND*` macro, or shadow the `DESTRUCTURING-BIND` symbol and:
+
+```common-lisp
+(setf (macro-function 'destructuring-bind)
+      (macro-function 'destructuring-bind*))
+```
+
 ## MIT License
 
 Copyright © 2018 Michał "phoe" Herda.

@@ -25,7 +25,7 @@ Either use the `DESTRUCTURING-BIND-STAR` package and call the
 
 ```common-lisp
 (setf (macro-function 'destructuring-bind)
-      (macro-function 'destructuring-bind*))
+      (macro-function 'destructuring-bind-star:destructuring-bind*))
 ```
 
 ## MIT License

@@ -4,26 +4,24 @@
   (:use #:cl)
   (:export #:destructuring-bind*
            #:destructuring-error
-           #:destructuring-error-lambda-list
-           #:destructuring-error-expression
-           #:destructuring-error-reason))
+           #:lambda-list
+           #:expression
+           #:reason))
 
 (in-package #:destructuring-bind-star)
 
 (defun print-destructuring-error (condition stream)
   (format stream "Failed to destructure ~S against ~S~:[.~;:~%~:*~A~]"
-          (destructuring-error-lambda-list condition)
-          (destructuring-error-expression condition)
-          (destructuring-error-reason condition)))
+          (lambda-list condition) (expression condition) (reason condition)))
 
 (define-condition destructuring-error (error)
-  ((%lambda-list :reader destructuring-error-lambda-list
+  ((%lambda-list :reader lambda-list
                  :initarg :lambda-list
                  :initform (error "Must provide LAMBDA-LIST."))
-   (%expression :reader destructuring-error-expression
+   (%expression :reader expression
                 :initarg :expression
                 :initform (error "Must provide EXPRESSION."))
-   (%reason :reader destructuring-error-reason
+   (%reason :reader reason
             :initarg :reason
             :initform nil))
   (:documentation "Condition type responsible for destructuring errors signaled

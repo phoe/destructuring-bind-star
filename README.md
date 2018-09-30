@@ -14,9 +14,9 @@ destructuring.
 
   * **Macro `DESTRUCTURING-BIND*`**
   * **Condition Type `DESTRUCTURING-ERROR`**
-    * **Reader `DESTRUCTURING-ERROR-LAMBDA-LIST`**
-    * **Reader `DESTRUCTURING-ERROR-EXPRESSION`**
-    * **Reader `DESTRUCTURING-ERROR-REASON`**
+    * **Reader `LAMBDA-LIST`**
+    * **Reader `EXPRESSION`**
+    * **Reader `REASON`**
 
 ## Usage
 

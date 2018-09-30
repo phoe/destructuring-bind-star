@@ -11,16 +11,16 @@
 (in-package #:destructuring-bind-star)
 
 (defun print-destructuring-error (condition stream)
-  (format stream "Failed to destructure ~S against ~S~:[.~;:~%~:*~A~]"
-          (lambda-list condition) (expression condition) (reason condition)))
+  (format stream "Failed to destructure ~S~:[~; against ~:*~S~]~:[.~;:~%~:*~A~]"
+          (expression condition) (lambda-list condition) (reason condition)))
 
 (define-condition destructuring-error (error)
-  ((%lambda-list :reader lambda-list
-                 :initarg :lambda-list
-                 :initform (error "Must provide LAMBDA-LIST."))
-   (%expression :reader expression
+  ((%expression :reader expression
                 :initarg :expression
                 :initform (error "Must provide EXPRESSION."))
+   (%lambda-list :reader lambda-list
+                 :initarg :lambda-list
+                 :initform '())
    (%reason :reader reason
             :initarg :reason
             :initform nil))

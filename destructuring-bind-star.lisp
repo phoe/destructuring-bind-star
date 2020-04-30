@@ -58,7 +58,7 @@ in DESTRUCTURING-BIND*.")
 
 (defmacro destructuring-bind* (lambda-list expression &body body)
   "Like DESTRUCTURING-BIND, except destructuring errors are signaled as
-instances of condition type DESTRUCTURING-BIND-ERROR."
+instances of condition type DESTRUCTURING-ERROR."
   (let ((in-body (gensym "IN-BODY")) (handle (gensym "HANDLE"))
         (condition (gensym "CONDITION")) (value (gensym "VALUE")))
     (multiple-value-bind (declarations body) (extract-declarations body)
